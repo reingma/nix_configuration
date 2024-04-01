@@ -9,6 +9,7 @@
       		./hardware-configuration.nix
 		inputs.nixos-hardware.nixosModules.dell-xps-13-9310
 		inputs.home-manager.nixosModules.home-manager
+		../features
   	];
 	nixpkgs = {
 		overlays = [
@@ -27,6 +28,16 @@
 		users = {
 			reingma = import ../../home-manager/dell_xps_home.nix;
 		};
+	};
+	users.users.reingma = {
+		isNormalUser = true;
+    		description = "Gabriel";
+		shell = pkgs.zsh;
+		extraGroups = [
+			"wheel"
+			"video"
+			"audio"
+		];
 	};
 	nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_:lib.isType "flake")) inputs);
 	nix.nixPath = ["/etc/nix/path"];
@@ -102,12 +113,6 @@
   	};
 
   	programs.zsh.enable = true;
-  	users.users.reingma = {
-    		isNormalUser = true;
-    		description = "Gabriel";
-    		extraGroups = ["audio" "docker" "networkmanager" "wheel" ];
-    		shell = pkgs.zsh;
-  	};
 
   	# Enable automatic login for the user.
   	services.xserver.displayManager.autoLogin.enable = true;
