@@ -1,16 +1,21 @@
-{ pkgs, libs, config, ... }:
+{ pkgs, lib, config, ... }:
 {
-	programs.git = {
-		package = pkgs.gitAndTools.gitFull;
-		enable = true;
-		userName = "reingma";
-		userEmail = "gabriel.masarin.aguiar@gmail.com";
-		extraConfig = {
-			init.defaultBranch = "master";
-		};
-		ignores = [ "result" ];
+	options = {
+		git.enable = lib.mkEnableOption "enables git";
 	};
-	programs.lazygit = {
-		enable = true;
+	config = lib.mkIf config.git.enable {
+		programs.git = {
+			package = pkgs.gitAndTools.gitFull;
+			enable = true;
+			userName = "reingma";
+			userEmail = "gabriel.masarin.aguiar@gmail.com";
+			extraConfig = {
+				init.defaultBranch = "master";
+			};
+			ignores = [ "result" ];
+		};
+		programs.lazygit = {
+			enable = true;
+		};
 	};
 }

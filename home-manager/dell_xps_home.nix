@@ -25,7 +25,7 @@ in {
 	};
 	
 	fonts.fontconfig.enable = true;
-	xresources.properties = {
+	xresources.properties = lib.mkDefault {
 		"Xft.dpi" = 200;
 	};
 	
