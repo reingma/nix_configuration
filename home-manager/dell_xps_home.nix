@@ -3,9 +3,8 @@
 in {
 	imports = [
 		inputs.nix-colors.homeManagerModules.default
-		./terminal
 		./programs
-		./features/cli
+		./features
 	];
 	colorScheme = lib.mkDefault colorSchemes.rose-pine-moon;
 
