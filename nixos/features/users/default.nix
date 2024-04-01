@@ -3,4 +3,5 @@
 	imports = [
 		./reingma
 	];
+	reingma.enable = lib.mkDefault true;
 }
