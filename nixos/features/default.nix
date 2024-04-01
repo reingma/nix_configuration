@@ -10,7 +10,8 @@
 		./bluetooth.nix
 		./network.nix
 		./postgres.nix
-		./no-supend.nix
+		./no-suspend.nix
+		./systemd-boot.nix
 	];
 	docker.enable = lib.mkDefault true;
 	pipewire-sound.enable = lib.mkDefault true;

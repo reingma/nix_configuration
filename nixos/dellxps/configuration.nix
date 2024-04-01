@@ -37,10 +37,6 @@
 		})
 		config.nix.registry;
 
-  	# Bootloader.
-  	boot.loader.systemd-boot.enable = true;
-  	boot.loader.efi.canTouchEfiVariables = true;
-
   	networking.hostName = "polaris"; # Define your hostname.
 
   	# Enable the X11 windowing system.
