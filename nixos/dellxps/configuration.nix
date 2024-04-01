@@ -29,6 +29,9 @@
 			reingma = import ../../home-manager/dell_xps_home.nix;
 		};
 	};
+	
+	bluetooth.enable = lib.mkForce true;
+
 	environment.etc =
 		lib.mapAttrs'
 		(name: value: {
@@ -70,11 +73,6 @@
   	# Enable automatic login for the user.
   	services.xserver.displayManager.autoLogin.enable = true;
   	services.xserver.displayManager.autoLogin.user = "reingma";
-
-  	# Enable bluetooth control
-  	hardware.bluetooth.enable = true;
-  	hardware.bluetooth.powerOnBoot = true;
-  	services.blueman.enable = true;
 
   	# List packages installed in system profile. To search, run:
   	# $ nix search wget
