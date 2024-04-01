@@ -29,8 +29,6 @@
 			reingma = import ../../home-manager/dell_xps_home.nix;
 		};
 	};
-	nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_:lib.isType "flake")) inputs);
-	nix.nixPath = ["/etc/nix/path"];
 	environment.etc =
 		lib.mapAttrs'
 		(name: value: {
@@ -38,10 +36,6 @@
 			value.source = value.flake;
 		})
 		config.nix.registry;
-	nix.settings = {
-		experimental-features = "nix-command flakes";
-		auto-optimise-store = true;	
-	};
 
   	# Bootloader.
   	boot.loader.systemd-boot.enable = true;

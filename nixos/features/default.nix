@@ -3,5 +3,6 @@
 	imports = [
 		./users
 		./locale.nix
+		./nix.nix
 	];
 }
