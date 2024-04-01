@@ -57,6 +57,7 @@
 		#ssh
 		openssh
 		bat
+		xclip
 	];
 
 	programs.fzf = {
