@@ -5,7 +5,6 @@ in {
 		inputs.nix-colors.homeManagerModules.default
 		./features
 	];
-	kitty.enable = false;
 	colorScheme = lib.mkDefault colorSchemes.rose-pine-moon;
 
 	nixpkgs = {
