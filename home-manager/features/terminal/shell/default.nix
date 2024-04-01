@@ -20,4 +20,7 @@
 			plugins = [ "git" ];
 		};
 	};
+	programs.bash = {
+		enable = true;
+	};
 }

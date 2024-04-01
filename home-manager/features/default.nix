@@ -3,5 +3,6 @@
 	imports = [
 		./cli
 		./terminal
+		./programs
 	];
 }

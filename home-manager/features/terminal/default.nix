@@ -1,7 +1,5 @@
-{config, ...}: let
-	d = config.xdg.dataHome;
-	c = config.xdg.configHome;
-in {
+{lib, config, ...}: 
+{
 	imports = [
 		./kitty.nix
 		./shell

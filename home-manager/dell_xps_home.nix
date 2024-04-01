@@ -3,9 +3,9 @@
 in {
 	imports = [
 		inputs.nix-colors.homeManagerModules.default
-		./programs
 		./features
 	];
+	kitty.enable = false;
 	colorScheme = lib.mkDefault colorSchemes.rose-pine-moon;
 
 	nixpkgs = {
