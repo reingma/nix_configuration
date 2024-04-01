@@ -27,6 +27,7 @@
 	};
 	
 	bluetooth.enable = lib.mkForce true;
+	postgres.enable = lib.mkForce true;
 
 	environment.etc =
 		lib.mapAttrs'
