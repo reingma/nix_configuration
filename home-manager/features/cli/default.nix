@@ -1,0 +1,6 @@
+{config, ...}: 
+{
+	imports = [
+		./git.nix
+	];
+}
