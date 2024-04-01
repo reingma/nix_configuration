@@ -8,9 +8,12 @@
 		./pipewire.nix
 		./zsh.nix
 		./bluetooth.nix
+		./network.nix
 	];
 	docker.enable = lib.mkDefault true;
 	pipewire-sound.enable = lib.mkDefault true;
 	zsh-shell.enable = lib.mkDefault true;
-	bluetooth.enable = lib.,mkDefault false;
+	network-module.enable = lib.mkDefault true;
+
+	bluetooth.enable = lib.mkDefault false;
 }
