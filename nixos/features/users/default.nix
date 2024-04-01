@@ -3,4 +3,4 @@
 	imports = [
 		./reingma
 	];
-};
+}

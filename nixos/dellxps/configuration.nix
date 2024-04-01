@@ -29,16 +29,6 @@
 			reingma = import ../../home-manager/dell_xps_home.nix;
 		};
 	};
-	users.users.reingma = {
-		isNormalUser = true;
-    		description = "Gabriel";
-		shell = pkgs.zsh;
-		extraGroups = [
-			"wheel"
-			"video"
-			"audio"
-		];
-	};
 	nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_:lib.isType "flake")) inputs);
 	nix.nixPath = ["/etc/nix/path"];
 	environment.etc =
