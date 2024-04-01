@@ -56,6 +56,7 @@
 
 		#ssh
 		openssh
+		bat
 	];
 
 	programs.fzf = {
