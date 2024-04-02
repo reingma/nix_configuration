@@ -1,7 +1,4 @@
-{ pkgs, lib, config, ...} : 
-{
-	imports = [
-		./reingma
-	];
-	reingma.enable = lib.mkDefault true;
+{ pkgs, lib, config, ... }: {
+  imports = [ ./reingma ];
+  reingma.enable = lib.mkDefault true;
 }
