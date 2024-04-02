@@ -1,1 +1,1 @@
-{ imports = [ ./browsers.nix ./xdg.nix ./common.nix ]; }
+{ imports = [ ./browsers.nix ./xdg.nix ./zathura.nix ]; }

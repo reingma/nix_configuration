@@ -10,6 +10,7 @@
     ./gh.nix
     ./ranger.nix
     ./pfetch.nix
+    ./zoxide.nix
   ];
   config = lib.mkIf config.cli-tools.enable {
     git.enable = lib.mkDefault true;
@@ -19,6 +20,7 @@
     gh.enable = lib.mkDefault true;
     ranger.enable = lib.mkDefault true;
     pfetch.enable = lib.mkDefault true;
+    zoxide.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
       #font
