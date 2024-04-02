@@ -5,13 +5,6 @@
 	...
 }: {
 	home.packages = with pkgs; [
-		#font
-		nerdfonts
-
-		#utils
-		neofetch #fetch system info
-		nnn #better folder explorer for terminal
-
 		# archives
 		zip
 		unzip
@@ -59,10 +52,6 @@
 		xclip
 	];
 
-	programs.fzf = {
-		enable = true;
-		enableZshIntegration = true;
-	};
 	programs.zoxide = {
 		enable = true;
 		enableZshIntegration = true;

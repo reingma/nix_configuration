@@ -10,8 +10,11 @@
 			userName = "reingma";
 			userEmail = "gabriel.masarin.aguiar@gmail.com";
 			extraConfig = {
-				init.defaultBranch = "master";
+				init.defaultBranch = "main";
 			};
+			merge.conflictStyle = "zdiff3";
+			commit.verbose = true;
+			diff.algorithm = "histogram";
 			ignores = [ "result" ];
 		};
 		programs.lazygit = {
