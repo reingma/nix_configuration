@@ -1,9 +1,9 @@
 {config, lib, ...}:
 {
 	options = {
-		priting.enable = lib.mkEnableOption "enables printing using CUPS";
+		printing.enable = lib.mkEnableOption "enables printing using CUPS";
 	};
-	config = lib.mkIf config.printing.enable = {
+	config = lib.mkIf config.printing.enable  {
   		# Enable CUPS to print documents.
   		services.printing.enable = true;
 	};
