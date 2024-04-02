@@ -41,9 +41,5 @@
 
   	networking.hostName = "polaris"; # Define your hostname.
 
-  	# Enable CUPS to print documents.
-  	services.printing.enable = true;
-
-
   	system.stateVersion = "23.11"; # Did you read the comment?
 }
