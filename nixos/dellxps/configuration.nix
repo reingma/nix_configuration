@@ -3,9 +3,9 @@
 {
   	imports = [ # Include the results of the hardware scan.
       		./hardware-configuration.nix
+		../features
 		inputs.nixos-hardware.nixosModules.dell-xps-13-9310
 		inputs.home-manager.nixosModules.home-manager
-		../features
   	];
 	nixpkgs = {
 		overlays = [
@@ -28,6 +28,8 @@
 	
 	bluetooth.enable = lib.mkForce true;
 	postgres.enable = lib.mkForce true;
+	no-suspend.enable = lib.mkForce true;
+	xfce.enable = lib.mkForce true;
 
 	environment.etc =
 		lib.mapAttrs'
@@ -39,26 +41,9 @@
 
   	networking.hostName = "polaris"; # Define your hostname.
 
-  	# Enable the XFCE Desktop Environment.
-  	services.xserver.displayManager.lightdm.enable = true;
-  	services.xserver.desktopManager.xfce.enable = true;
-
   	# Enable CUPS to print documents.
   	services.printing.enable = true;
 
-  	# Enable automatic login for the user.
-  	services.xserver.displayManager.autoLogin.enable = true;
-  	services.xserver.displayManager.autoLogin.user = "reingma";
-
-  	# List packages installed in system profile. To search, run:
-  	# $ nix search wget
-  	environment.systemPackages = with pkgs; [
-    		vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    		wget
-    		git
-    		curl
-  	];
-  	environment.variables.EDITOR = "vim";
 
   	system.stateVersion = "23.11"; # Did you read the comment?
 }
