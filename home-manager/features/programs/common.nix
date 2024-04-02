@@ -56,7 +56,6 @@
 
 		#ssh
 		openssh
-		bat
 		xclip
 	];
 
