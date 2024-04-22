@@ -6,6 +6,7 @@ let
   hasEza = hasPackage "eza";
   hasZoxide = config.programs.zoxide.enable;
   hasKitty = config.programs.kitty.enable;
+  hasNvim = config.programs.neovim.enable;
 in {
   options = { zsh.enable = lib.mkEnableOption "enables zsh shell"; };
   config = lib.mkIf config.zsh.enable {
@@ -23,6 +24,8 @@ in {
         jqless = "jq -C | less -r";
         ls = mkIf hasEza "eza";
         cd = mkIf hasZoxide "z";
+	vim = mkIf hasNvim "nvim";
+	vi = mkIf hasNvim "nvim";
       };
       oh-my-zsh = {
         enable = true;
