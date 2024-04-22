@@ -9,8 +9,9 @@
     ./fzf.nix
     ./gh.nix
     ./ranger.nix
-    ./pfetch.nix
     ./zoxide.nix
+    ./nixtools.nix
+    ./neofetch.nix
   ];
   config = lib.mkIf config.cli-tools.enable {
     git.enable = lib.mkDefault true;
@@ -19,15 +20,13 @@
     fzf.enable = lib.mkDefault true;
     gh.enable = lib.mkDefault true;
     ranger.enable = lib.mkDefault true;
-    pfetch.enable = lib.mkDefault true;
     zoxide.enable = lib.mkDefault true;
+    nixtools.enable = lib.mkDefault true;
+    neofetch.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
       #font
       nerdfonts
-
-      #utils
-      neofetch # info fetching
 
       # archives
       zip
@@ -47,10 +46,6 @@
       diffsitter # better diff
 
       #nix tooling
-      nil # lsp
-      nixfmt # formatter
-      nvd # differ
-      nix-output-monitor # for monitoring a build
 
       ltex-ls # spell checker lsp
 
