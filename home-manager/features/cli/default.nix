@@ -12,6 +12,8 @@
     ./zoxide.nix
     ./nixtools.nix
     ./neofetch.nix
+    ./monitoring.nix
+    ./networktools.nix
   ];
   config = lib.mkIf config.cli-tools.enable {
     git.enable = lib.mkDefault true;

@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options = { networktools.enable = lib.mkEnableOption "enables network tools"; };
+  options = {
+    networktools.enable = lib.mkEnableOption "enables network tools";
+  };
   config = lib.mkIf config.networktools.enable {
     home.packages = with pkgs; [
       iperf3 # for network measurements
@@ -7,6 +9,6 @@
       nmap # netowrk discovery and security
       iftop # network monitoring
       ethtool # checking on network devices
-];
+    ];
   };
 }
