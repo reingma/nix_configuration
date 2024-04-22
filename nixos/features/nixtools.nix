@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }: {
+{ lib, config, ... }: {
   options = { nixtools.enable = lib.mkEnableOption "enables nixtools"; };
   config = lib.mkIf config.nixtools.enable {
-    home.packages = with pkgs; [ nil nixfmt nvd nix-output-monitor ];
+    programs.nh = { enable = true; };
   };
-}

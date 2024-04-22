@@ -23,7 +23,6 @@
 
   bluetooth.enable = lib.mkForce true;
   postgres.enable = lib.mkForce true;
-  no-suspend.enable = lib.mkForce true;
   xfce.enable = lib.mkForce true;
 
   environment.etc = lib.mapAttrs' (name: value: {
