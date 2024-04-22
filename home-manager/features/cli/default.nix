@@ -23,6 +23,8 @@
     zoxide.enable = lib.mkDefault true;
     nixtools.enable = lib.mkDefault true;
     neofetch.enable = lib.mkDefault true;
+    networktools.enable = lib.mkDefault true;
+    monitoring.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
       #font
@@ -32,6 +34,8 @@
       zip
       unzip
       p7zip
+      gnutar # for tar compressing
+      zstd # compression tool
 
       #utility
       ripgrep # super grep
@@ -44,41 +48,19 @@
       fd # better find
       httpie # better curl
       diffsitter # better diff
+      xclip # copy files to clipboard
 
-      #nix tooling
-
+      glow # markdown viwer on terminal
       ltex-ls # spell checker lsp
-
-      # markdown viewer on terminal
-      glow
-
-      # monitoring
-      btop # process monitoring
-      iotop # io monitoring
-      iftop # network monitoring
-
-      #network
-      iperf3 # for network measurements
-      aria2 # download tool for any type of protocol
-      nmap # netowrk discovery and security
-
-      #sys tools
-      sysstat # monitoring system performance
-      ethtool # checking on network devices
-      pciutils # checking on pci devices
-      usbutils # lsusb for checking usb devices
 
       #ssh
       openssh
-      xclip
 
       #minsc
       tree # list directory tree structure
       which # gives the path to executables
       file # gives file information
-      gnutar # for tar compressing
       gnused # for interacting with text using vi syntax
-      zstd # compression tool
       gnupg # cryptography lib
       gawk # interacting with text files
     ];
