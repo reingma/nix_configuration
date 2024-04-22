@@ -8,7 +8,7 @@
       vimAlias = true;
       vimdiffAlias = true;
       extraLuaConfig = ''
-        ${builtins.readFile ./nvim/init.lua}
+        ${builtins.readFile ./config/init.lua}
       '';
     };
   };
