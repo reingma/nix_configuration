@@ -13,7 +13,6 @@
     ./xserver.nix
     ./xfce.nix
     ./printing.nix
-    ./hyprland.nix
   ];
   docker.enable = lib.mkDefault true;
   pipewire-sound.enable = lib.mkDefault true;
@@ -21,7 +20,6 @@
   network-module.enable = lib.mkDefault true;
   x-server.enable = lib.mkDefault true;
   printing.enable = lib.mkDefault true;
-  hyprland.enable = lib.mkDefault true;
 
   bluetooth.enable = lib.mkDefault false;
   postgres.enable = lib.mkDefault false;

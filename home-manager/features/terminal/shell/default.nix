@@ -24,8 +24,8 @@ in {
         jqless = "jq -C | less -r";
         ls = mkIf hasEza "eza";
         cd = mkIf hasZoxide "z";
-	vim = mkIf hasNvim "nvim";
-	vi = mkIf hasNvim "nvim";
+        vim = mkIf hasNvim "nvim";
+        vi = mkIf hasNvim "nvim";
       };
       oh-my-zsh = {
         enable = true;
