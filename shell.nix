@@ -1,5 +1,5 @@
-{ pkgs ? import <nixpkgs> {}}:
-
-pkgs.mkShell {
+{ pkgs ? import <nixpkgs> {}}: {
+default = pkgs.mkShell {
   packages = [pkgs.zig];
+};
 }

@@ -1,4 +1,1 @@
-{ lib, pkgs, config, ... }: {
-  imports = [ ];
-  xdg.portal.enable = true;
-}
+{ lib, pkgs, config, ... }: { imports = [ ]; }
