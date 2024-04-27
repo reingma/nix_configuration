@@ -11,7 +11,6 @@
     ./postgres.nix
     ./systemd-boot.nix
     ./xserver.nix
-    ./xfce.nix
     ./printing.nix
     ./greetd.nix
   ];
@@ -25,7 +24,6 @@
 
   bluetooth.enable = lib.mkDefault false;
   postgres.enable = lib.mkDefault false;
-  xfce.enable = lib.mkDefault false;
 
   environment.systemPackages = with pkgs; [ vim wget git curl ];
   environment.variables.EDITOR = "vim";

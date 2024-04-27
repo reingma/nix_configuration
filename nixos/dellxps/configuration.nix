@@ -21,9 +21,14 @@
     users = { reingma = import ../../home-manager/dell_xps_home.nix; };
   };
 
+  xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   bluetooth.enable = lib.mkForce true;
-  postgres.enable = lib.mkForce true;
-  xfce.enable = lib.mkForce true;
+  programs.sway.enable = true;
+
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";
