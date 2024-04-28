@@ -27,11 +27,11 @@
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
     in {
       inherit lib;
+      nixosModules = import ./modules/home-manager;
+      homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays { inherit inputs outputs; };
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
 
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
@@ -39,7 +39,8 @@
 
       nixosConfigurations.polaris = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
-        modules = [ ./nixos/dellxps/configuration.nix ];
+        modules = [ ./nixos/dellxps];
       };
+
     };
 }

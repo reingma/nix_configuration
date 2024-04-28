@@ -4,7 +4,7 @@ in {
   imports = [ inputs.nix-colors.homeManagerModules.default ./features ];
   config = {
     colorScheme = lib.mkDefault colorSchemes.tokyo-night-dark;
-    wallpaper = lib.mkDefault pkgs.wallpapers.space;
+#    wallpaper = lib.mkDefault pkgs.wallpapers.space;
 
     nixpkgs = {
       overlays = [
