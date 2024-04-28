@@ -31,11 +31,15 @@ in {
           icon_theme_name = "Papirus";
           theme_name = "Nordic";
         };
+        background = {
+          path = wallpaper;
+          fit = "Cover";
+        };
       };
     };
     services.greetd = { 
       enable = true;
-      settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
+      #settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
     };
   };
 }
