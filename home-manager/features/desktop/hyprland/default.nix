@@ -43,13 +43,13 @@
           focus_on_activate = true;
         };
         layerrule = [
-          "animation fade,waybar"
-          "blur,waybar"
-          "ignorezero,waybar"
-          "blur,notifications"
-          "ignorezero,notifications"
-          "blur,wofi"
-          "ignorezero,wofi"
+          #"animation fade,waybar"
+          #"blur,waybar"
+          #"ignorezero,waybar"
+          #"blur,notifications"
+          #"ignorezero,notifications"
+          #"blur,wofi"
+          #"ignorezero,wofi"
           "noanim,wallpaper"
         ];
 
@@ -64,7 +64,6 @@
             passes = 3;
             new_optimizations = true;
             ignore_opacity = true;
-            popups = true;
           };
           drop_shadow = true;
           shadow_range = 12;
@@ -88,19 +87,19 @@
             "windowsIn,1,3,easeoutback,slide"
             "windowsOut,1,3,easeinback,slide"
             "windowsMove,1,3,easeoutback"
-            "fasdeIn,1,3,easeout"
+            "fadeIn,1,3,easeout"
             "fadeOut,1,3,easein"
             "fadeSwitch,1,3,easeinout"
             "fadeShadow,1,3,easeinout"
             "fadeDim,1,3,easeinout"
-            "fadeLayersIn,1,3,easeoutback"
-            "fadeLayersOut,1,3,easeinback"
-            "layersIn,1,3,easeoutback,slide"
-            "layersOut,1,3,easeinback,slide"
+            #"fadeLayersIn,1,3,easeoutback"
+            #"fadeLayersOut,1,3,easeinback"
+            #"layersIn,1,3,easeoutback,slide"
+            #"layersOut,1,3,easeinback,slide"
           ];
         };
-        exec =
-          [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
+        #exec =
+        #  [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
         bind = let
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in

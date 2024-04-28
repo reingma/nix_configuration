@@ -24,10 +24,10 @@
   xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = "*";
   };
 
   bluetooth.enable = lib.mkForce true;
-  programs.sway.enable = true;
 
 
   environment.etc = lib.mapAttrs' (name: value: {

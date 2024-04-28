@@ -3,6 +3,7 @@ let inherit (inputs.nix-colors) colorSchemes;
 in {
   imports = [ inputs.nix-colors.homeManagerModules.default ./features ];
   colorScheme = lib.mkDefault colorSchemes.tokyo-night-dark;
+  wallpaper = pkgs.wallpapers.sea_pier;
 
   nixpkgs = {
     overlays = [

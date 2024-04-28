@@ -14,11 +14,11 @@
         j = down;
       };
     in [
-      "ALTSHIFT,x,killactive"
+      "ALTSHIFT,q,killactive"
       "ALTSHIFT,e,exit"
       "ALT,s,togglesplit"
-      "ALT,f,fullscreen,1"
-      "ALTSHIFT,f,fullscreen,0"
+      "ALT,f,fullscreen,0"
+      "ALTSHIFT,f,fullscreen,1"
       "ALTSHIFT,backspace,togglefloating"
 
       "ALT,minus,splitratio,-0.25"
@@ -27,7 +27,7 @@
       "ALT,g,togglegroup"
       "ALT,t,lockactivegroup,toggle"
       "ALT,tab,changegroupactive,f"
-      "ALTSHIFT,tab,change,groupactive,b"
+      "ALTSHIFT,tab,changegroupactive,b"
 
       "ALT,apostrophe,workspace,previous"
       "ALTSHIFT,apostrophe,workspace,next"
