@@ -1,13 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 let inherit (inputs.nix-colors) colorSchemes;
 in {
-  options = {
-    wallpaper = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
-      description = "Wallpaper path ";
-    };
-  };
   imports = [ inputs.nix-colors.homeManagerModules.default ./features ];
   config = {
     colorScheme = lib.mkDefault colorSchemes.tokyo-night-dark;
@@ -36,5 +29,15 @@ in {
     home.stateVersion = "23.11";
     systemd.user.startServices = "sd-switch";
     programs.home-manager.enable = true;
+
+#    monitors = [
+#      {
+#        name = "eDP-1";
+#        width = 3840;
+#        height = 2160;
+#        workspace = "3";
+#        primary = true;
+#      }
+#    ];
   };
 }
