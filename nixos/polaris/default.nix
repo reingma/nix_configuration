@@ -16,6 +16,13 @@
     config = { allowUnfree = true; };
   };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      reingma = import ../../home-manager/polaris.nix;
+    };
+  };
+
   xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

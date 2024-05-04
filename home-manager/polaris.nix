@@ -26,14 +26,14 @@ in {
     systemd.user.startServices = "sd-switch";
     programs.home-manager.enable = true;
 
-#    monitors = [
-#      {
-#        name = "eDP-1";
-#        width = 3840;
-#        height = 2160;
-#        workspace = "3";
-#        primary = true;
-#      }
-#    ];
+    monitors = [
+      {
+        name = "eDP-1";
+        width = 3840;
+        height = 2160;
+        workspace = "3";
+        primary = true;
+      }
+    ];
   };
 }

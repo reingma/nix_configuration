@@ -42,15 +42,16 @@
         modules = [ ./nixos/polaris];
       };
 
-      homeConfigurations = {
-        "reingma@polaris" = lib.homeManagerConfiguration {
-          modules = [ ./home-manager/polaris.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
-          };
-        };
-      };
+#      if we want to use separate builds, home and system.
+#      homeConfigurations = {
+#        "reingma@polaris" = lib.homeManagerConfiguration {
+#          modules = [ ./home-manager/polaris.nix ];
+#          pkgs = pkgsFor.x86_64-linux;
+#          extraSpecialArgs = {
+#            inherit inputs outputs;
+#          };
+#        };
+#      };
 
     };
 }
