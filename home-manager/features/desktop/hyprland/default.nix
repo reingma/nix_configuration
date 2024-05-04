@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   options = { hyprland.enable = lib.mkEnableOption "enable hyprland desktop"; };
-  imports = [ ../common ../common/wayland ./basic-binds.nix ];
+  imports = [ ../common ../common/wayland ./basic-binds.nix ./hyprbars.nix];
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
@@ -41,15 +41,16 @@
           vfr = true;
           close_special_on_empty = true;
           focus_on_activate = true;
+          new_window_takes_over_fullscreen = 2;
         };
         layerrule = [
           #"animation fade,waybar"
           #"blur,waybar"
           #"ignorezero,waybar"
-          #"blur,notifications"
-          #"ignorezero,notifications"
-          #"blur,wofi"
-          #"ignorezero,wofi"
+          "blur,notifications"
+          "ignorezero,notifications"
+          "blur,wofi"
+          "ignorezero,wofi"
           "noanim,wallpaper"
         ];
 
@@ -98,6 +99,7 @@
             #"layersOut,1,3,easeinback,slide"
           ];
         };
+
         exec =
           [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
         bind = let
@@ -112,7 +114,7 @@
         let
           makoctl = lib.getExe' config.services.mako.package "makoctl";
         in
-          lib.optionals config.services.mako enable ["ALT,w,exec,${makoctl} dismiss"]
+          lib.optionals config.services.mako.enable ["ALT,w,exec,${makoctl} dismiss"]
         )
         ++
         (
@@ -124,6 +126,44 @@
             "ALT,d,exec,${wofi} -S run"
           ]
         );
+
+#        monitor = let
+#          inherit (config.wayland.windowManager.hyprland.settings.general) gaps_in gaps_out;
+#          gap = gaps_out - gaps_in;
+#          inherit (config.programs.waybar.settings.primary) position height width;
+#          waybarSpace = {
+#            top =
+#              if (position == "top")
+#              then height + gap
+#              else 0;
+#            bottom =
+#              if (position == "bottom")
+#              then height + gap
+#              else 0;
+#            left =
+#              if (position == "left")
+#              then width + gap
+#              else 0;
+#            right =
+#              if (position == "right")
+#              then width + gap
+#              else 0;
+#          };
+#        in
+#          [
+#            ",addreserved,${toString waybarSpace.top},${toString waybarSpace.bottom},${toString waybarSpace.left},${toString waybarSpace.right}"
+#          ]
+#          ++ (map (
+#            m: "${m.name}, ${
+#              if m.enabled
+#              then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1"
+#              else "disable"
+#            }"
+#            ) (config.monitors));
+
+        workspace = map (m: "${m.name},${m.workspace}") (
+          lib.filter (m: m.enabled && m.workspace != null) config.monitors
+          );
       };
     };
   };

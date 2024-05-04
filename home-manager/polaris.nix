@@ -29,10 +29,15 @@ in {
     monitors = [
       {
         name = "eDP-1";
-        width = 3840;
-        height = 2160;
-        workspace = "3";
+        width = 1920;
+        height = 1200;
         primary = true;
+      }
+      {
+        name = "DP-4";
+        width = 4096;
+        height = 2160;
+        workspace = "1";
       }
     ];
   };
