@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   options = { hyprland.enable = lib.mkEnableOption "enable hyprland desktop"; };
-  imports = [ ../common ../common/wayland ./basic-binds.nix ./hyprbars.nix];
+  imports = [ ../common ../common/wayland ./basic-binds.nix ];
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
@@ -127,39 +127,13 @@
           ]
         );
 
-#        monitor = let
-#          inherit (config.wayland.windowManager.hyprland.settings.general) gaps_in gaps_out;
-#          gap = gaps_out - gaps_in;
-#          inherit (config.programs.waybar.settings.primary) position height width;
-#          waybarSpace = {
-#            top =
-#              if (position == "top")
-#              then height + gap
-#              else 0;
-#            bottom =
-#              if (position == "bottom")
-#              then height + gap
-#              else 0;
-#            left =
-#              if (position == "left")
-#              then width + gap
-#              else 0;
-#            right =
-#              if (position == "right")
-#              then width + gap
-#              else 0;
-#          };
-#        in
-#          [
-#            ",addreserved,${toString waybarSpace.top},${toString waybarSpace.bottom},${toString waybarSpace.left},${toString waybarSpace.right}"
-#          ]
-#          ++ (map (
-#            m: "${m.name}, ${
-#              if m.enabled
-#              then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1"
-#              else "disable"
-#            }"
-#            ) (config.monitors));
+        monitor = (map (
+            m: "${m.name}, ${
+              if m.enabled
+              then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1"
+              else "disable"
+            }"
+            ) (config.monitors));
 
         workspace = map (m: "${m.name},${m.workspace}") (
           lib.filter (m: m.enabled && m.workspace != null) config.monitors
