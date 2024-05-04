@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ];
+  imports = [ ./mako.nix ./wofi.nix ];
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [ wf-recorder wl-clipboard ];
   home.sessionVariables = {
