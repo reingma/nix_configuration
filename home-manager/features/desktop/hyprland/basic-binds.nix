@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.settings = {
     bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
     bind = let
-      workspaces = [ "0" "1" "2" "3" "4" "5" "6" "7" "8" "8" ];
+      workspaces = [ "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
       directions = rec {
         left = "l";
         right = "r";
@@ -34,6 +34,8 @@
 
       "ALT,a,togglespecialworkspace"
       "ALTSHIFT,a,movetoworkspacesilent,special"
+      "SUPER,1,movewindow, mon:eDP-1"
+      "SUPER,2,movewindow, mon:DP-4"
     ] ++ (map (n: "ALT,${n},workspace,name:${n}") workspaces)
     ++ (map (n: "ALTSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
     ++ (lib.mapAttrsToList (key: direction: "ALT,${key},movefocus,${direction}")
