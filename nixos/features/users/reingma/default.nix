@@ -18,6 +18,8 @@ in {
         "podman"
         "networkmanager"
       ];
+      packages = [pkgs.home-manager];
     };
+    home-manager.users.reingma = import ../../../../home-manager/${config.networking.hostname}.nix
   };
 }

@@ -39,12 +39,12 @@
 
       nixosConfigurations.polaris = lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
-        modules = [ ./nixos/dellxps];
+        modules = [ ./nixos/polaris];
       };
 
       homeConfigurations = {
         "reingma@polaris" = lib.homeManagerConfiguration {
-          modules = [ ./home-manager/dell_xps_home.nix ];
+          modules = [ ./home-manager/polaris.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = {
             inherit inputs outputs;

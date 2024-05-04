@@ -16,11 +16,6 @@
     config = { allowUnfree = true; };
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = { reingma = import ../../home-manager/dell_xps_home.nix; };
-  };
-
   xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
