@@ -98,8 +98,8 @@
             #"layersOut,1,3,easeinback,slide"
           ];
         };
-        #exec =
-        #  [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
+        exec =
+          [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
         bind = let
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in [

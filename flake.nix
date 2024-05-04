@@ -27,8 +27,8 @@
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
     in {
       inherit lib;
-      nixosModules = import ./modules/home-manager;
       homeManagerModules = import ./modules/home-manager;
+      nixosModules = import ./modules/nixos;
 
       overlays = import ./overlays { inherit inputs outputs; };
 
@@ -37,9 +37,19 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
-      nixosConfigurations.polaris = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.polaris = lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [ ./nixos/dellxps];
+      };
+
+      homeConfigurations = {
+        "reingma@polaris" = lib.homeManagerConfiguration {
+          modules = [ ./home-manager/dell_xps_home.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
 
     };

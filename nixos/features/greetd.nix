@@ -7,7 +7,7 @@ let
       lib.concatStringsSep ":" homeSharePaths
     }" GTK_USE_PORTAL=0'';
 
-  #wallpaper = homeCfgs.reingma.wallpaper;
+  wallpaper = homeCfgs.reingma.wallpaper;
   sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
     output * bg #000000 solid_color
     xwayland disable
@@ -31,10 +31,10 @@ in {
           icon_theme_name = "Papirus";
           theme_name = "Nordic";
         };
-        #background = {
-        #  path = wallpaper;
-        #  fit = "Cover";
-        #};
+        background = {
+          path = wallpaper;
+          fit = "Cover";
+        };
       };
     };
     services.greetd = { 

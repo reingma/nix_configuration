@@ -13,7 +13,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
-    homeManagerModules = import ../../modules/home-manager;
     config = { allowUnfree = true; };
   };
 

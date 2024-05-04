@@ -1,10 +1,10 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 let inherit (inputs.nix-colors) colorSchemes;
 in {
-  imports = [ inputs.nix-colors.homeManagerModules.default ./features ];
+  imports = [ inputs.nix-colors.homeManagerModules.default ./features ] ++ (builtins.attrValues outputs.homeManagerModules);
   config = {
     colorScheme = lib.mkDefault colorSchemes.tokyo-night-dark;
-#    wallpaper = lib.mkDefault pkgs.wallpapers.space;
+    wallpaper = lib.mkDefault pkgs.wallpapers.space;
 
     nixpkgs = {
       overlays = [
@@ -17,10 +17,6 @@ in {
         allowUnfree = true;
         allowUnfreePredicate = _: true;
       };
-    };
-    home = {
-      username = lib.mkDefault "reingma";
-      homeDirectory = lib.mkDefault "/home/reingma";
     };
 
     fonts.fontconfig.enable = true;
