@@ -127,12 +127,8 @@ in {
           inherit (config.wayland.windowManager.hyprland.settings.general)
             gaps_in gaps_out;
           gap = gaps_out - gaps_in;
-#          inherit (config.programs.waybar.settings.primary)
-#            position height width;
-          position = "top";
-          height = 1;
-          width = 3;
-
+          inherit (config.programs.waybar.settings.primary)
+            position height width;
           waybarSpace = {
             top = if (position == "top") then height + gap else 0;
             bottom = if (position == "bottom") then height + gap else 0;
