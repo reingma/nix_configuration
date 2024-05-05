@@ -1,6 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-
-{
+{ inputs, outputs, lib, config, pkgs, pkgsFor, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../features
@@ -18,19 +16,16 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      reingma = import ../../home-manager/polaris.nix;
-    };
+    users = { reingma = import ../../home-manager/polaris.nix; };
   };
 
   xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      config.common.default = "*";
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
   };
 
   bluetooth.enable = lib.mkForce true;
-
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";

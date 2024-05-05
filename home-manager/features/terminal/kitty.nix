@@ -9,6 +9,10 @@ in {
     };
     programs.kitty = {
       enable = true;
+      font = {
+        name = config.fontProfiles.monospace.family;
+        size = 12;
+      };
       shellIntegration.enableZshIntegration = true;
       settings = {
         scrollback_lines = 4000;
@@ -28,11 +32,11 @@ in {
         #inactive_tab_foreground = "${colors.on_surface_variant}";
         #tab_bar_background = "${colors.surface_bright}";
         color0 = "#${palette.base00}";
-        color1 = "#${palette.base08}";
-        color2 = "#${palette.base0B}";
-        color3 = "#${palette.base0A}";
-        color4 = "#${palette.base0D}";
-        color5 = "#${palette.base0E}";
+        color1 = "#${palette.base0F}";#red
+        color2 = "#${palette.base0B}";#green
+        color3 = "#${palette.base0A}";#yellow
+        color4 = "#${palette.base0A}";#blue
+        color5 = "#${palette.base0E}";#magenta
         #color6 = "${colors.cyan}";
         color7 = "#${palette.base05}";
         color8 = "#${palette.base00}";

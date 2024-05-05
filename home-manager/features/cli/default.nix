@@ -29,8 +29,6 @@
     monitoring.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
-      #font
-      nerdfonts
 
       # archives
       zip

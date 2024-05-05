@@ -1,5 +1,5 @@
-{config, ...}: let
-  inherit (config.colorScheme) palette;
+{ config, ... }:
+let inherit (config.colorScheme) palette;
 in {
   services.mako = {
     enable = true;

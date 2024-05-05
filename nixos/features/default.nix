@@ -22,7 +22,8 @@
   x-server.enable = lib.mkDefault true;
   printing.enable = lib.mkDefault true;
   greetd.enable = lib.mkDefault true;
-  hyprland.enable = lib.mkDefault true;
+
+  hyprland.enable = lib.mkDefault false;
 
   bluetooth.enable = lib.mkDefault false;
   postgres.enable = lib.mkDefault false;

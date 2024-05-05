@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }: {
+{ inputs, config, lib, pkgs, ... }:
+let
+  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+    wrapRuntimeDeps = false;
+  };
+in {
   options = { hyprland.enable = lib.mkEnableOption "enable hyprland desktop"; };
-  imports = [ ../common ../common/wayland ./basic-binds.nix ];
+  imports = [ ../common ../common/wayland ./basic-binds.nix ./hyprbars.nix ];
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      package = hyprland;
       systemd = {
         enable = true;
         extraCommands = lib.mkBefore [
@@ -44,9 +50,9 @@
           new_window_takes_over_fullscreen = 2;
         };
         layerrule = [
-          #"animation fade,waybar"
-          #"blur,waybar"
-          #"ignorezero,waybar"
+          "animation fade,waybar"
+          "blur,waybar"
+          "ignorezero,waybar"
           "blur,notifications"
           "ignorezero,notifications"
           "blur,wofi"
@@ -108,35 +114,47 @@
           "ALT,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
           "ALT,e,exec,${defaultApp "text/plain"}"
           "ALT,b,exec,${defaultApp "x-scheme-handler/https"}"
-        ]
-        ++
-        (
-        let
-          makoctl = lib.getExe' config.services.mako.package "makoctl";
-        in
-          lib.optionals config.services.mako.enable ["ALT,w,exec,${makoctl} dismiss"]
-        )
-        ++
-        (
-        let
-          wofi = lib.getExe config.programs.wofi.package;
-        in
-          lib.optionals config.programs.wofi.enable [
-            "ALT,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-            "ALT,d,exec,${wofi} -S run"
-          ]
-        );
+        ] ++ (let makoctl = lib.getExe' config.services.mako.package "makoctl";
+        in lib.optionals config.services.mako.enable
+        [ "ALT,w,exec,${makoctl} dismiss" ])
+        ++ (let wofi = lib.getExe config.programs.wofi.package;
+        in lib.optionals config.programs.wofi.enable [
+          "ALT,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+          "ALT,d,exec,${wofi} -S run"
+        ]);
 
-        monitor = (map (
-            m: "${m.name}, ${
-              if m.enabled
-              then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1"
-              else "disable"
-            }"
-            ) (config.monitors));
-        workspace = map (m: "${m.name},${m.workspace}") (
-          lib.filter (m: m.enabled && m.workspace != null) config.monitors
-          );
+        monitor = let
+          inherit (config.wayland.windowManager.hyprland.settings.general)
+            gaps_in gaps_out;
+          gap = gaps_out - gaps_in;
+#          inherit (config.programs.waybar.settings.primary)
+#            position height width;
+          position = "top";
+          height = 1;
+          width = 3;
+
+          waybarSpace = {
+            top = if (position == "top") then height + gap else 0;
+            bottom = if (position == "bottom") then height + gap else 0;
+            left = if (position == "left") then width + gap else 0;
+            right = if (position == "right") then width + gap else 0;
+          };
+        in [
+          ",addreserved,${toString waybarSpace.top},${
+            toString waybarSpace.bottom
+          },${toString waybarSpace.left},${toString waybarSpace.right}"
+        ] ++ (map (m:
+          "${m.name},${
+            if m.enabled then
+              "${toString m.width}x${toString m.height}@${
+                toString m.refreshRate
+              },${toString m.x}x${toString m.y},1"
+            else
+              "disable"
+          }") (config.monitors));
+
+        workspace = map (m: "${m.name},${m.workspace}")
+          (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
       };
     };
   };
