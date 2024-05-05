@@ -198,8 +198,7 @@ in {
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
       inherit (config.colorScheme) palette;
-      toRGBA = color: opacity:
-        "rgba(${hexToRGBString "," color},${opacity})";
+      toRGBA = color: opacity: "rgba(${hexToRGBString "," color},${opacity})";
       # css
     in ''
       * {
@@ -236,7 +235,7 @@ in {
       }
       #workspaces button.focused,
       #workspaces button.active {
-        background-color: #${palette.base00};
+        background-color: ${toRGBA palette.base0B "0.3"};
         color: #${palette.base05};
       }
 

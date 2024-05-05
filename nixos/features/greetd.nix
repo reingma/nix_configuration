@@ -1,5 +1,7 @@
-{ pkgs, lib, config, ... }:
+{inputs, pkgs, lib, config, ... }:
 let
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
   homeCfgs = config.home-manager.users;
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
   vars = ''
@@ -8,39 +10,54 @@ let
     }" GTK_USE_PORTAL=0'';
 
   wallpaper = homeCfgs.reingma.wallpaper;
-  sway-kiosk = command:
-    "${lib.getExe pkgs.sway} --unsupported-gpu --config ${
-      pkgs.writeText "kiosk.config" ''
-        output * bg #000000 solid_color
-        xwayland disable
-        input "type:touchpad" {
-          tap enabled
-        }
-        exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
-      ''
-    }";
 in {
   options = { greetd.enable = lib.mkEnableOption "enables greetd"; };
   config = lib.mkIf config.greetd.enable {
+    environment.etc."greetd/environments".text = ''
+      Hyprland
+      bash
+      zsh
+    '';
     users.extraUsers.greeter = {
       home = "/tmp/greeter-home";
       createHome = true;
     };
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 
-    programs.regreet = {
-      enable = true;
+    #programs.regreet = {
+    #  enable = true;
+    #  settings = {
+    #    GTK = {
+    #      icon_theme_name = "Papirus";
+    #      theme_name = "Nordic";
+    #    };
+    #    background = {
+    #      path = wallpaper;
+    #      fit = "Cover";
+    #    };
+    #  };
+    #};
+    services.greetd = { 
+      enable = true; 
       settings = {
-        GTK = {
-          icon_theme_name = "Papirus";
-          theme_name = "Nordic";
-        };
-        background = {
-          path = wallpaper;
-          fit = "Cover";
+        default_session = {
+          command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+          user = "greeter";
         };
       };
     };
-    services.greetd = { enable = true; };
   };
+  # this is a life saver.
+  # literally no documentation about this anywhere.
+  # might be good to write about this...
+  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
 }
-
