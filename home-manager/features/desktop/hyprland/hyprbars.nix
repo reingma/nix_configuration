@@ -50,7 +50,7 @@ in {
         toggleOn = setBarHeight
           config.wayland.windowManager.hyprland.settings."plugin:hyprbars".bar_height;
         toggleOff = setBarHeight 0;
-      in [ "ALTSFHIT,m,exec,${barsEnabled} && ${toggleOff} || ${toggleOn}" ];
+      in [ "SUPERSHIFT,m,exec,${barsEnabled} && ${toggleOff} || ${toggleOn}" ];
     };
   };
 }

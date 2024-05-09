@@ -14,35 +14,33 @@
         j = down;
       };
     in [
-      "ALTSHIFT,q,killactive"
-      "ALTSHIFT,e,exit"
-      "ALT,s,togglesplit"
-      "ALT,f,fullscreen,0"
-      "ALTSHIFT,f,fullscreen,1"
-      "ALTSHIFT,backspace,togglefloating"
+      "SUPER,q,killactive"
+      "SUPERSHIFT,e,exit"
+      "SUPER,s,togglesplit"
+      "SUPER,f,fullscreen,0"
+      "SUPERSHIFT,f,fullscreen,1"
+      "SUPERSHIFT,backspace,togglefloating"
 
-      "ALT,minus,splitratio,-0.25"
-      "ALTSHIFT,minus,splitratio,-0.33333"
+      "SUPER,minus,splitratio,-0.25"
+      "SUPERSHIFT,minus,splitratio,-0.33333"
 
-      "ALT,g,togglegroup"
-      "ALT,t,lockactivegroup,toggle"
-      "ALT,tab,changegroupactive,f"
-      "ALTSHIFT,tab,changegroupactive,b"
+      "SUPER,g,togglegroup"
+      "SUPER,t,lockactivegroup,toggle"
+      "SUPER,tab,changegroupactive,f"
+      "SUPERSHIFT,tab,changegroupactive,b"
 
-      "ALT,apostrophe,workspace,previous"
-      "ALTSHIFT,apostrophe,workspace,next"
+      "SUPER,apostrophe,workspace,previous"
+      "SUPERSHIFT,apostrophe,workspace,next"
 
-      "ALT,a,togglespecialworkspace"
-      "ALTSHIFT,a,movetoworkspacesilent,special"
-      "SUPER,1,movewindow, mon:eDP-1"
-      "SUPER,2,movewindow, mon:DP-4"
-    ] ++ (map (n: "ALT,${n},workspace,name:${n}") workspaces)
-    ++ (map (n: "ALTSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
-    ++ (lib.mapAttrsToList (key: direction: "ALT,${key},movefocus,${direction}")
+      "SUPER,a,togglespecialworkspace"
+      "SUPERSHIFT,a,movetoworkspacesilent,special"
+    ] ++ (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
+    ++ (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
+    ++ (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
       directions) ++ (lib.mapAttrsToList
-        (key: direction: "ALTSHIFT,${key},swapwindow,${direction}") directions)
+        (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions)
     ++ (lib.mapAttrsToList
-      (key: direction: "ALTCONTROL,${key},movewindoworgroup,${direction}")
+      (key: direction: "SUPERCONTROL,${key},movewindoworgroup,${direction}")
       directions);
   };
 }

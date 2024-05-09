@@ -111,16 +111,16 @@ in {
         bind = let
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in [
-          "ALT,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-          "ALT,e,exec,${defaultApp "text/plain"}"
-          "ALT,b,exec,${defaultApp "x-scheme-handler/https"}"
+          "SUPER,t,exec,${lib.getExe pkgs.handlr-regex} launch x-scheme-handler/terminal"
+          "SUPER,e,exec,${defaultApp "text/plain"}"
+          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         ] ++ (let makoctl = lib.getExe' config.services.mako.package "makoctl";
         in lib.optionals config.services.mako.enable
-        [ "ALT,w,exec,${makoctl} dismiss" ])
+        [ "SUPER,w,exec,${makoctl} dismiss" ])
         ++ (let wofi = lib.getExe config.programs.wofi.package;
         in lib.optionals config.programs.wofi.enable [
-          "ALT,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-          "ALT,d,exec,${wofi} -S run"
+          "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+          "SUPER,d,exec,${wofi} -S run"
         ]);
 
         monitor = let

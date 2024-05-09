@@ -7,12 +7,29 @@ let
   hasZoxide = config.programs.zoxide.enable;
   hasKitty = config.programs.kitty.enable;
   hasNvim = config.programs.neovim.enable;
+  hasZellij = config.programs.zellij.enable;
+  zellijWorkflow = if hasZellij then ''
+          eval "$(zellij setup --generate-auto-start zsh)"
+          zsessionizer () { echo; zsession; zle redisplay }
+          zle -N zsessionizer
+          bindkey "^f" zsessionizer
+    '' else "";
+  hasTmux = config.programs.tmux.enable;
+  tmuxWorkflow = if hasTmux then ''
+          tsessionizer () { echo; tsession; zle redisplay }
+          zle -N tsessionizer
+          bindkey "^f" tsessionizer
+    '' else "";
 in {
   options = { zsh.enable = lib.mkEnableOption "enables zsh shell"; };
   config = lib.mkIf config.zsh.enable {
     programs.zsh = {
       enable = true;
-      initExtra = "	[[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}\n";
+      initExtra = ''
+          [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+          ${zellijWorkflow}
+          ${tmuxWorkflow}
+        '';
       zplug = {
         enable = true;
         plugins = [{
@@ -29,7 +46,7 @@ in {
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [ "git" "tmux" ];
       };
     };
     programs.bash = { enable = true; };

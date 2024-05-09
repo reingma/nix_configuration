@@ -21,11 +21,12 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
     config.common.default = "*";
   };
 
   bluetooth.enable = lib.mkForce true;
+  environment.systemPackages = [pkgs.zsession pkgs.tsession];
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";
