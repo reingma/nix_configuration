@@ -13,9 +13,7 @@ in {
         name = config.fontProfiles.monospace.family;
         size = 12;
       };
-      keybindings = {
-        "ctrl+shift+j" = "new_window_with_cwd";
-      };
+      keybindings = { "ctrl+shift+j" = "new_window_with_cwd"; };
       shellIntegration.enableZshIntegration = true;
       settings = {
         scrollback_lines = 4000;

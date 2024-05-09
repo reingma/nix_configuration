@@ -6,9 +6,7 @@ in {
     programs.tmux = {
       enable = true;
       baseIndex = 1;
-      plugins = with pkgs; [
-        tmuxPlugins.vim-tmux-navigator
-      ];
+      plugins = with pkgs; [ tmuxPlugins.vim-tmux-navigator ];
       extraConfig = ''
         set-option -sa terminal-overrides ",xterm*:Tc"
         set -g @catppuccin_flavor 'mocha'

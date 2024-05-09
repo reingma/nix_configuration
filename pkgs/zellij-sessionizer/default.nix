@@ -3,7 +3,7 @@ writeShellScriptBin "zsession" ''
   if [[ $# -eq 1 ]]; then
     selected_path=$1
   else
-    selected_path=$(fd . ~/dev --min-depth 1 --maxdepth 2 --type d | fzf)
+    selected_path=$(fd . ~/dev --min-depth 0 --maxdepth 1 --type d | cat - <(echo "~/.sys_config") | fzf)
   fi
 
   if [[ -z $selected_path ]]; then
@@ -14,7 +14,7 @@ writeShellScriptBin "zsession" ''
 
   if [[ -z $ZELLIJ ]]; then
     cd $selected_path
-    zellij attach $session_name -c
+    zellij attach --create $session_name
     exit 0
   fi
 

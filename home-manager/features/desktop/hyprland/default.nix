@@ -111,7 +111,9 @@ in {
         bind = let
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in [
-          "SUPER,t,exec,${lib.getExe pkgs.handlr-regex} launch x-scheme-handler/terminal"
+          "SUPER,t,exec,${
+            lib.getExe pkgs.handlr-regex
+          } launch x-scheme-handler/terminal"
           "SUPER,e,exec,${defaultApp "text/plain"}"
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         ] ++ (let makoctl = lib.getExe' config.services.mako.package "makoctl";

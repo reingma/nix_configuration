@@ -36,9 +36,10 @@
       "SUPERSHIFT,a,movetoworkspacesilent,special"
     ] ++ (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
     ++ (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
-    ++ (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
-      directions) ++ (lib.mapAttrsToList
-        (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions)
+    ++ (lib.mapAttrsToList
+      (key: direction: "SUPER,${key},movefocus,${direction}") directions)
+    ++ (lib.mapAttrsToList
+      (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions)
     ++ (lib.mapAttrsToList
       (key: direction: "SUPERCONTROL,${key},movewindoworgroup,${direction}")
       directions);
