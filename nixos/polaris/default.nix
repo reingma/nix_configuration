@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, pkgsFor, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../features
@@ -26,7 +26,7 @@
   };
 
   bluetooth.enable = lib.mkForce true;
-  environment.systemPackages = [ pkgs.zsession pkgs.tsession ];
+  environment.systemPackages = [ pkgs.zsession pkgs.tsession pkgs.zig ];
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";

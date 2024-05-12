@@ -18,10 +18,9 @@ require('lazy').setup({
   require 'plugins.autoformat',
   require 'plugins.autocompletion',
 
-
-  { 
+  {
     'folke/tokyonight.nvim',
-    priority = 1000, 
+    priority = 1000,
     init = function()
       vim.cmd.colorscheme 'tokyonight-night'
 
@@ -37,13 +36,18 @@ require('lazy').setup({
   require 'plugins.indent_line',
   --require 'kickstart.plugins.lint',
   require 'plugins.autopairs',
-  require 'plugins.neo-tree',
+  require 'plugins.neo_tree',
   require 'plugins.which_key',
   require 'plugins.gitsigns',
   require 'plugins.telescope',
   require 'plugins.mini',
   require 'plugins.tree_sitter',
   require 'plugins.lsp_nix',
+  require 'plugins.trouble',
+  require 'plugins.undotree',
+  require 'plugins.fugitive',
+  require 'plugins.neotest',
+  require 'plugins.rustlsp',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -65,7 +69,6 @@ require('lazy').setup({
     },
   },
 })
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -25,7 +25,8 @@ return {
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      nix = { 'nixfmt' }
+      nix = { 'nixfmt' },
+      rust = { 'clippy' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --

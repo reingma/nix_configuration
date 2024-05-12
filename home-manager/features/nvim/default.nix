@@ -8,7 +8,13 @@
       vimAlias = true;
       vimdiffAlias = true;
 
-      extraPackages = with pkgs; [ lua-language-server nil gopls ];
+      extraPackages = with pkgs; [
+        lua-language-server
+        stylua
+        nixfmt
+        nil
+        gopls
+      ];
     };
     home.file."./.config/nvim/" = {
       source = ./nvim_config;
