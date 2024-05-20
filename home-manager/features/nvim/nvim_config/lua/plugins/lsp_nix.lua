@@ -150,6 +150,8 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local lspconfig = require 'lspconfig'
+
+    -- Configuration of the actual lsps.
     lspconfig.nil_ls.setup {}
     lspconfig.lua_ls.setup { settings = { Lua = { completion = { callSnippet = 'Replace' } } } }
   end,

@@ -26,7 +26,8 @@
   };
 
   bluetooth.enable = lib.mkForce true;
-  environment.systemPackages = [ pkgs.zsession pkgs.tsession pkgs.zig ];
+  environment.systemPackages =
+    [ pkgs.zsession pkgs.tsession pkgs.zig pkgs.clang ];
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";
