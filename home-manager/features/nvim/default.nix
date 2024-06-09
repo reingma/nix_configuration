@@ -14,6 +14,7 @@
         nixfmt
         nil
         gopls
+        marksman
       ];
     };
     home.file."./.config/nvim/" = {
