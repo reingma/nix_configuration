@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   browser = [ "org.qutebrowser.qutebrowser.desktop" ];
 
@@ -25,18 +25,23 @@ let
     "x-scheme-handler/discord" = [ "discordcanary.desktop" ];
   };
 in {
-  xdg = {
-    enable = true;
-    cacheHome = config.home.homeDirectory + "/.local/cache";
-
-    mimeApps = {
+  options = {
+    xdgconfig.enable = lib.mkEnableOption "enable xdg configurations";
+  };
+  config = lib.mkIf config.xdgconfig.enable {
+    xdg = {
       enable = true;
-      defaultApplications = associations;
-    };
+      cacheHome = config.home.homeDirectory + "/.local/cache";
 
-    userDirs = {
-      enable = true;
-      createDirectories = true;
+      mimeApps = {
+        enable = true;
+        defaultApplications = associations;
+      };
+
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+      };
     };
   };
 }
