@@ -52,6 +52,11 @@
         modules = [ ./nixos/polaris ];
       };
 
+      #nixosConfigurations.wsl = lib.nixosSystem {
+      #  specialArgs = { inherit inputs outputs; };
+      #  nodules = [ ./nixos/wsl ];
+      #};
+
       #      if we want to use separate builds, home and system.
       #      homeConfigurations = {
       #        "reingma@polaris" = lib.homeManagerConfiguration {
