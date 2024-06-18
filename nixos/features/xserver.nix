@@ -3,8 +3,8 @@
   config = lib.mkIf config.x-server.enable {
     services.xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "";
+      xkb.layout = "us";
+      xkb.variant = "";
     };
   };
 }

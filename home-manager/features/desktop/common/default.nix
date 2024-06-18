@@ -9,7 +9,7 @@
     ./zathura.nix
   ];
   config = {
-    home.packages = with pkgs; [ xdragon pavucontrol sublime-music playerctl ];
+    home.packages = with pkgs; [ xdragon pavucontrol playerctl ];
     kitty.enable = lib.mkDefault true;
     xdgconfig.enable = lib.mkDefault true;
     zathura.enable = lib.mkDefault true;
