@@ -1,6 +1,8 @@
 { config, ... }:
-let inherit (config.colorScheme) palette;
-in {
+let
+  inherit (config.colorScheme) palette;
+in
+{
   services.mako = {
     enable = true;
     padding = "10,20";

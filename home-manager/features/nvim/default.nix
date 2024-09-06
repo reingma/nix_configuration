@@ -1,5 +1,13 @@
-{ config, pkgs, lib, ... }: {
-  options = { nvim.enable = lib.mkEnableOption "enables neovim"; };
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  options = {
+    nvim.enable = lib.mkEnableOption "enables neovim";
+  };
   config = lib.mkIf config.nvim.enable {
     home.sessionVariables.EDITOR = "nvim";
     programs.neovim = {
@@ -11,10 +19,11 @@
       extraPackages = with pkgs; [
         lua-language-server
         stylua
-        nixfmt
+        nixfmt-rfc-style
         nil
         gopls
         marksman
+        texlab
       ];
     };
     home.file."./.config/nvim/" = {
@@ -44,7 +53,10 @@
         ];
         terminal = true;
         type = "Application";
-        categories = [ "Utility" "TextEditor" ];
+        categories = [
+          "Utility"
+          "TextEditor"
+        ];
       };
     };
   };

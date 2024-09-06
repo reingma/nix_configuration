@@ -1,4 +1,9 @@
-{ writeShellScriptBin, tmux, fd, fzf }:
+{
+  writeShellScriptBin,
+  tmux,
+  fd,
+  fzf,
+}:
 writeShellScriptBin "tsession" ''
   if [[ $# -eq 1 ]]; then
     selected_path=$1

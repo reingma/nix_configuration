@@ -16,8 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
-      url =
-        "github:hyprwm/hyprland-plugins/e9457e08ca3ff16dc5a815be62baf9e18b539197";
+      url = "github:hyprwm/hyprland-plugins/e9457e08ca3ff16dc5a815be62baf9e18b539197";
       inputs.hyprland.follows = "hyprland";
     };
     nixos-hardware.url = "github:NixOs/nixos-hardware/master";
@@ -25,18 +24,28 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, systems, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nur,
+      systems,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      pkgsFor = lib.genAttrs (import systems) (system:
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-        });
-      forEachSystem = f:
-        lib.genAttrs (import systems) (system: f pkgsFor.${system});
-    in {
+        }
+      );
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    in
+    {
       inherit lib;
       homeManagerModules = import ./modules/home-manager;
       nixosModules = import ./modules/nixos;
@@ -48,7 +57,9 @@
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations.polaris = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
+        specialArgs = {
+          inherit inputs outputs;
+        };
         modules = [ ./nixos/polaris ];
       };
 

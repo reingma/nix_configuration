@@ -49,6 +49,7 @@ require('lazy').setup({
   require 'plugins.fugitive',
   require 'plugins.neotest',
   require 'plugins.rustlsp',
+  require 'plugins.vimtex',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

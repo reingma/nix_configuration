@@ -1,19 +1,23 @@
-{ inputs, pkgs, lib, config, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  hyprland-session = "${
-      inputs.hyprland.packages.${pkgs.system}.hyprland
-    }/share/wayland-sessions";
+  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
   homeCfgs = config.home-manager.users;
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
-  vars = ''
-    XDG_DATA_DIRS="$XDG_DATA_DIRS:${
-      lib.concatStringsSep ":" homeSharePaths
-    }" GTK_USE_PORTAL=0'';
+  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
   wallpaper = homeCfgs.reingma.wallpaper;
-in {
-  options = { greetd.enable = lib.mkEnableOption "enables greetd"; };
+in
+{
+  options = {
+    greetd.enable = lib.mkEnableOption "enables greetd";
+  };
   config = lib.mkIf config.greetd.enable {
     environment.etc."greetd/environments".text = ''
       Hyprland
@@ -52,8 +56,7 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command =
-            "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+          command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
           user = "greeter";
         };
       };

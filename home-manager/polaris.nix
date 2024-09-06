@@ -1,6 +1,16 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ inputs.nix-colors.homeManagerModules.default ./features ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+    ./features
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   config = {
     nix = {
@@ -51,14 +61,14 @@
         width = 2560;
         height = 1600;
         primary = true;
-        workspace = "6";
+        workspace = "1";
       }
       {
         name = "DP-4";
         width = 4096;
         height = 2160;
         x = -2560;
-        workspace = "1";
+        workspace = "2";
       }
     ];
   };

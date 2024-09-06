@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   options = {
     cli-tools.enable = lib.mkEnableOption "enables common cli tools";
   };

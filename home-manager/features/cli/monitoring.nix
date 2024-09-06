@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   options = {
     monitoring.enable = lib.mkEnableOption "enables monitoring tools";
   };

@@ -1,4 +1,12 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     #./hardware-configuration.nix
     ../features
@@ -10,12 +18,18 @@
       outputs.overlays.modifications
       outputs.overlays.stable-packages
     ];
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = { reingma = import ../../home-manager/wsl.nix; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
+    users = {
+      reingma = import ../../home-manager/wsl.nix;
+    };
   };
 
   xdg.portal = {
@@ -25,8 +39,12 @@
   };
 
   bluetooth.enable = lib.mkForce true;
-  environment.systemPackages =
-    [ pkgs.zsession pkgs.tsession pkgs.zig pkgs.clang ];
+  environment.systemPackages = [
+    pkgs.zsession
+    pkgs.tsession
+    pkgs.zig
+    pkgs.clang
+  ];
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";

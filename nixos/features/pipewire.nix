@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options = {
     pipewire-sound.enable = lib.mkEnableOption "Enable pipewire sound control";
   };

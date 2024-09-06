@@ -1,5 +1,13 @@
-{ config, lib, pkgs, ... }: {
-  options = { zathura.enable = lib.mkEnableOption "enable zathura reader"; };
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  options = {
+    zathura.enable = lib.mkEnableOption "enable zathura reader";
+  };
   config = lib.mkIf config.zathura.enable {
     programs.zathura = {
       enable = true;

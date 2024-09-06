@@ -153,6 +153,7 @@ return {
 
     -- Configuration of the actual lsps.
     lspconfig.nil_ls.setup {}
+    lspconfig.texlab.setup {}
     lspconfig.lua_ls.setup { settings = { Lua = { completion = { callSnippet = 'Replace' } } } }
     lspconfig.marksman.setup {}
   end,

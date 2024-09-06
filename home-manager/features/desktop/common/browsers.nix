@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options = {
     browsers.enable = lib.mkEnableOption "enable web browsers configurations";
   };
@@ -27,10 +33,12 @@
           start_pages = [ "https://www.google.com" ];
         };
       };
-      searchEngines = { DEFAULT = "https://www.google.com/search?hl=en&q={}"; };
+      searchEngines = {
+        DEFAULT = "https://www.google.com/search?hl=en&q={}";
+      };
     };
     programs.firefox = {
-      enable = true;
+      enable = false;
       profiles = {
         gabriel = {
           id = 0;

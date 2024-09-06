@@ -1,5 +1,13 @@
-{ pkgs, lib, config, ... }: {
-  options = { git.enable = lib.mkEnableOption "enables git"; };
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options = {
+    git.enable = lib.mkEnableOption "enables git";
+  };
   config = lib.mkIf config.git.enable {
     programs.git = {
       package = pkgs.gitAndTools.gitFull;
@@ -14,6 +22,8 @@
       };
       ignores = [ "result" ];
     };
-    programs.lazygit = { enable = true; };
+    programs.lazygit = {
+      enable = true;
+    };
   };
 }

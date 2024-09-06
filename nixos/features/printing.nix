@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options = {
     printing.enable = lib.mkEnableOption "enables printing using CUPS";
   };

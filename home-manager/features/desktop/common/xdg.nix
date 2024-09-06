@@ -24,7 +24,8 @@ let
     "application/pdf" = [ "org.pwmt.zathura.desktop.desktop" ];
     "x-scheme-handler/discord" = [ "discordcanary.desktop" ];
   };
-in {
+in
+{
   options = {
     xdgconfig.enable = lib.mkEnableOption "enable xdg configurations";
   };

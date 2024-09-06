@@ -1,4 +1,10 @@
-{ lib, pkgs, config, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   imports = [
     ./discord.nix
     ./slack.nix
@@ -9,7 +15,11 @@
     ./zathura.nix
   ];
   config = {
-    home.packages = with pkgs; [ xdragon pavucontrol playerctl ];
+    home.packages = with pkgs; [
+      xdragon
+      pavucontrol
+      playerctl
+    ];
     kitty.enable = lib.mkDefault true;
     xdgconfig.enable = lib.mkDefault true;
     zathura.enable = lib.mkDefault true;

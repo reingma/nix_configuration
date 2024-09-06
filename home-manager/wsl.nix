@@ -1,6 +1,16 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ inputs.nix-colors.homeManagerModules.default ./features ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+    ./features
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   config = {
     nix = {

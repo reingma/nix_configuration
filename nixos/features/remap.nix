@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options = {
     remap.enable = lib.mkEnableOption "enables remaping of capslock to escape";
   };
@@ -8,7 +9,11 @@
       keyboards = {
         default = {
           ids = [ "*" ];
-          settings = { main = { capslock = "overload(meta, esc)"; }; };
+          settings = {
+            main = {
+              capslock = "overload(meta, esc)";
+            };
+          };
         };
       };
     };

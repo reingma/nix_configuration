@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
@@ -8,17 +13,26 @@ let
   hasKitty = config.programs.kitty.enable;
   hasNvim = config.programs.neovim.enable;
   hasZellij = config.programs.zellij.enable;
-  zellijWorkflow = if hasZellij then ''
-    bindkey -s "^f" "zsession^M"
-  '' else
-    "";
+  zellijWorkflow =
+    if hasZellij then
+      ''
+        bindkey -s "^f" "zsession^M"
+      ''
+    else
+      "";
   hasTmux = config.programs.tmux.enable;
-  tmuxWorkflow = if hasTmux then ''
-    bindkey -s "^f" "tsession^M"
-  '' else
-    "";
-in {
-  options = { zsh.enable = lib.mkEnableOption "enables zsh shell"; };
+  tmuxWorkflow =
+    if hasTmux then
+      ''
+        bindkey -s "^f" "tsession^M"
+      ''
+    else
+      "";
+in
+{
+  options = {
+    zsh.enable = lib.mkEnableOption "enables zsh shell";
+  };
   config = lib.mkIf config.zsh.enable {
     programs.zsh = {
       enable = true;
@@ -29,10 +43,15 @@ in {
       '';
       zplug = {
         enable = true;
-        plugins = [{
-          name = "romkatv/powerlevel10k";
-          tags = [ "as:theme" "depth:1" ];
-        }];
+        plugins = [
+          {
+            name = "romkatv/powerlevel10k";
+            tags = [
+              "as:theme"
+              "depth:1"
+            ];
+          }
+        ];
       };
       shellAliases = rec {
         jqless = "jq -C | less -r";
@@ -46,6 +65,8 @@ in {
         plugins = [ "git" ];
       };
     };
-    programs.bash = { enable = true; };
+    programs.bash = {
+      enable = true;
+    };
   };
 }

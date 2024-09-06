@@ -1,11 +1,24 @@
-{ config, lib, pkgs, ... }:
-let inherit (config.colorScheme) palette;
-in {
-  options = { kitty.enable = lib.mkEnableOption "enable kitty terminal"; };
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (config.colorScheme) palette;
+in
+{
+  options = {
+    kitty.enable = lib.mkEnableOption "enable kitty terminal";
+  };
   config = lib.mkIf config.kitty.enable {
     xdg.mimeApps = {
-      associations.added = { "x-scheme-handler/terminal" = "kitty.desktop"; };
-      defaultApplications = { "x-scheme-handler/terminal" = "kitty.desktop"; };
+      associations.added = {
+        "x-scheme-handler/terminal" = "kitty.desktop";
+      };
+      defaultApplications = {
+        "x-scheme-handler/terminal" = "kitty.desktop";
+      };
     };
     programs.kitty = {
       enable = true;
@@ -13,7 +26,9 @@ in {
         name = config.fontProfiles.monospace.family;
         size = 12;
       };
-      keybindings = { "ctrl+shift+j" = "new_window_with_cwd"; };
+      keybindings = {
+        "ctrl+shift+j" = "new_window_with_cwd";
+      };
       shellIntegration.enableZshIntegration = true;
       settings = {
         scrollback_lines = 4000;

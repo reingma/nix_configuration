@@ -1,5 +1,14 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ # Include the results of the hardware scan.
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../features
     inputs.nixos-hardware.nixosModules.dell-xps-13-9380
@@ -11,12 +20,18 @@
       outputs.overlays.modifications
       outputs.overlays.stable-packages
     ];
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = { reingma = import ../../home-manager/polaris.nix; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
+    users = {
+      reingma = import ../../home-manager/polaris.nix;
+    };
   };
 
   xdg.portal = {
@@ -26,8 +41,12 @@
   };
 
   bluetooth.enable = lib.mkForce true;
-  environment.systemPackages =
-    [ pkgs.zsession pkgs.tsession pkgs.zig pkgs.clang ];
+  environment.systemPackages = [
+    pkgs.zsession
+    pkgs.tsession
+    pkgs.zig
+    pkgs.clang
+  ];
 
   environment.etc = lib.mapAttrs' (name: value: {
     name = "nix/path/${name}";

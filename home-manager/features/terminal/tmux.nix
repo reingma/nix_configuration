@@ -1,7 +1,16 @@
-{ config, lib, pkgs, ... }:
-let inherit (config.colorScheme) palette;
-in {
-  options = { tmux.enable = lib.mkEnableOption "enable tmux"; };
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (config.colorScheme) palette;
+in
+{
+  options = {
+    tmux.enable = lib.mkEnableOption "enable tmux";
+  };
   config = lib.mkIf config.tmux.enable {
     programs.tmux = {
       enable = true;

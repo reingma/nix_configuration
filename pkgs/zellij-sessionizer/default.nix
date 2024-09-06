@@ -1,4 +1,9 @@
-{ writeShellScriptBin, zellij, fd, fzf }:
+{
+  writeShellScriptBin,
+  zellij,
+  fd,
+  fzf,
+}:
 writeShellScriptBin "zsession" ''
   if [[ $# -eq 1 ]]; then
     selected_path=$1
