@@ -27,6 +27,8 @@ return {
       lua = { 'stylua' },
       nix = { 'nixfmt' },
       rust = { 'rustfmt' },
+      haskell = { 'hindent' },
+      typescript = { { 'prettierd', 'prettier' } },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
