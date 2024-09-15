@@ -50,6 +50,7 @@ require('lazy').setup({
   require 'plugins.neotest',
   require 'plugins.rustlsp',
   require 'plugins.vimtex',
+  require 'plugins.haskell_tools',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
