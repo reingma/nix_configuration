@@ -21,9 +21,7 @@
         stylua
         nixfmt-rfc-style
         nil
-        gopls
         marksman
-        texlab
       ];
     };
     home.file."./.config/nvim/" = {
