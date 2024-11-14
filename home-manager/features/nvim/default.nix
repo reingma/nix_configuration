@@ -22,6 +22,22 @@
         nixfmt-rfc-style
         nil
         marksman
+        nodePackages.vscode-langservers-extracted
+        nodePackages.yaml-language-server
+        nodePackages.dockerfile-language-server-nodejs
+        nodePackages.typescript-language-server
+        emmet-ls
+        nodePackages."@tailwindcss/language-server"
+        rust-analyzer
+        nodePackages.prettier
+        metals
+        texlab
+        haskell-language-server
+        gopls
+        hadolint
+        nodePackages.jsonlint
+        markdownlint-cli2
+        vscode-extensions.vadimcn.vscode-lldb
       ];
     };
     home.file."./.config/nvim/" = {

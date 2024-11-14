@@ -2,7 +2,7 @@ vim.opt.relativenumber = true
 vim.g.have_nerd_font = true
 
 vim.opt.number = true
-vim.opt.colorcolumn = '120'
+vim.opt.colorcolumn = '80'
 
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 vim.opt.undofile = true
@@ -25,6 +25,11 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'

@@ -1,6 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = '[P]roject [V]iew' })
 
 -- Diagnostic keymaps
@@ -28,6 +25,13 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Adjusting inline heights, its Alt+, and Alt+. for side to side and
+-- Alt + t and Alt+s for height
+vim.keymap.set('n', '<M-.>', '<c-w>5<')
+vim.keymap.set('n', '<M-,>', '<c-w>5>')
+vim.keymap.set('n', '<M-t>', '<C-W>+')
+vim.keymap.set('n', '<M-s>', '<C-W>-')
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = '[F]ormat' })
 local set = vim.opt_local

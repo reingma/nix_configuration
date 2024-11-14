@@ -155,6 +155,14 @@ return {
     lspconfig.nil_ls.setup {}
     lspconfig.lua_ls.setup { settings = { Lua = { completion = { callSnippet = 'Replace' } } } }
     lspconfig.marksman.setup {}
+    lspconfig.jsonls.setup {}
+    lspconfig.dockerls.setup {}
+    lspconfig.yamlls.setup {}
+    lspconfig.jsonls.setup {}
+    lspconfig.emmet_ls.setup {}
+    lspconfig.tailwindcss.setup {}
+    lspconfig.cssls.setup {}
+    lspconfig.html.setup {}
     lspconfig.texlab.setup {}
   end,
 }

@@ -10,7 +10,7 @@
   ];
   config = lib.mkIf config.terminal.enable {
     zsh.enable = lib.mkDefault true;
-    zellij.enable = lib.mkDefault true;
+    zellij.enable = lib.mkDefault false;
     tmux.enable = lib.mkDefault false;
   };
 }

@@ -38,7 +38,7 @@
       };
     };
     programs.firefox = {
-      enable = false;
+      enable = true;
       profiles = {
         gabriel = {
           id = 0;
